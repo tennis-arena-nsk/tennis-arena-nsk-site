@@ -4,11 +4,12 @@ Web site repository for http://tennis-arena-nsk.ru/
 
 ## Tools used
 
-Original html / css code from Blocs app (Mac).
-Favicon generation: http://realfavicongenerator.net/
+* Original html / css code: Blocs.app (Mac)
+* Favicon generator: http://realfavicongenerator.net/
+* Gulp build system
+* Image minification: imagemin via gulp-imagemin
 
-Manually added: 
+## Manually added
+
 * Yandex.Metrika / Google Analytics code snippets
 * 2Gis map widget
-
-
