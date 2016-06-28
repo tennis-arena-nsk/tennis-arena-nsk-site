@@ -17,9 +17,9 @@
   },
   "homepage": "https://github.com/tennis-arena-nsk/tennis-arena-nsk-site#readme",
   "devDependencies": {
+    "browser-sync": "^2.13.0",
     "gulp": "^3.9.1",
     "gulp-clean": "^0.3.2",
-    "gulp-imagemin": "^3.0.1",
-    "gulp-server-livereload": "^1.8.1"
+    "gulp-imagemin": "^3.0.1"
   }
 }
