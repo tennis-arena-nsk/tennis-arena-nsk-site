@@ -1,0 +1,25 @@
+{
+  "name": "tennis-arena-nsk-site",
+  "version": "0.0.1",
+  "description": "Web site tennis-arena-nsk.ru",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tennis-arena-nsk/tennis-arena-nsk-site.git"
+  },
+  "author": "deksden",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/tennis-arena-nsk/tennis-arena-nsk-site/issues"
+  },
+  "homepage": "https://github.com/tennis-arena-nsk/tennis-arena-nsk-site#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-clean": "^0.3.2",
+    "gulp-imagemin": "^3.0.1",
+    "gulp-server-livereload": "^1.8.1"
+  }
+}
