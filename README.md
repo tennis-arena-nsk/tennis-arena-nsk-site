@@ -6,8 +6,9 @@ Web site repository for http://tennis-arena-nsk.ru/
 
 * Original html / css code: Blocs.app (Mac)
 * Favicon generator: http://realfavicongenerator.net/
-* Gulp build system
-* Image minification: imagemin via gulp-imagemin
+* Gulp build system: http://gulpjs.com
+* Image minification: gulp-imagemin
+* Live reload of pages via browser-sync module: http://browsersync.io
 
 ## Manually added
 
