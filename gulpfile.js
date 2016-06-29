@@ -76,21 +76,19 @@ function getFtpConnection() {
 
 // define generic tasks
 gulp.task('default', [ task.webserver] );
-gulp.task( task.processAll, function(cb) {
+gulp.task( task.processAll, function(done) {
   // use undocumented function to start complete build just after clean:
   runSequence( 
     task.clean,
-    [ task.processImg, task.processFonts, task.processCss , task.processHtml, task.processJs ],
-    cb
+    task.processImg, task.processFonts, task.processCss , task.processHtml, task.processJs ,
+    done
   );
-  
 });
 
 
 // Clean: clear all files in build directory
-gulp.task( task.clean, function ( done ) {
-  del( build.base + allGlob );
-  done();
+gulp.task( task.clean, function () {
+  return del( build.base + allGlob );
 });
 
 // CSS: process CSS files
@@ -131,10 +129,18 @@ gulp.task( task.processJs, function () {
     .pipe( gulp.dest( build.js ));
 });
 
-// Watch-related tasks: reload dev browser after processing files
-gulp.task( task.watchJs, [ task.processJs ], browserSync.reload);
-gulp.task( task.watchHtml, [ task.processHtml ], browserSync.reload);
-gulp.task( task.watchCss, [ task.processCss ], browserSync.reload);
+// reload browser and publish site helper function
+var reloadAndPublish = function(done) {
+  browserSync.reload();
+  if (process.env.PUBLISH )
+    gulp.run( task.publish );
+  done();
+};
+
+// WATCH-xxx: Watch for HTML/CSS/JS: process files and then reload dev browser
+gulp.task( task.watchHtml, [ task.processHtml ], reloadAndPublish );
+gulp.task( task.watchCss, [ task.processCss ], reloadAndPublish );
+gulp.task( task.watchJs, [ task.processJs ], reloadAndPublish );
 
 // Start webserver with live reloading:
 gulp.task(task.webserver, [task.processAll], function() {
@@ -157,25 +163,11 @@ gulp.task( task.publish, [task.processAll], function() {
 
   var conn = getFtpConnection();
 
-  return gulp.src( connection.sourcePath, { base: build.base, buffer: false })
-    .pipe( conn.newer( connection.destPath ) ) // only upload newer files
-    .pipe( conn.dest( connection.destPath ) );
+  var stream = gulp.src( connection.sourcePath, { base: build.base, buffer: false });
+
+  if ( !process.env.PUBLISH_ALL) {
+    console.log('publishing only newer files');
+    stream = stream.pipe(conn.newer(connection.destPath)); // only upload newer files
+  }
+  return stream.pipe( conn.dest( connection.destPath ) );
 });
-
-// PUBLISH and WATCH: watch for file changes and publish them:
-/* Not ready as for now:
-gulp.task( task.publishWatch, function() {
-  gulp.watch( connection.sourcePath )
-    .on('change', function(event) {
-      console.log('Changes detected! Uploading file "' + event.path + '", ' + event.type);
-
-      gulp.start( task.publish);
-
-
-      // return gulp.src( [event.path], { base: '.', buffer: false } )
-      //   .pipe( conn.newer( remoteFolder ) ) // only upload newer files
-      //   .pipe( conn.dest( remoteFolder ) )
-      //   ;
-    });
-});
-*/

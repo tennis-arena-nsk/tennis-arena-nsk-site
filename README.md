@@ -9,15 +9,22 @@ Web site repository for http://tennis-arena-nsk.ru/
 * Gulp build system: http://gulpjs.com
 * Image minification: gulp-imagemin
 * Live reload of pages via browser-sync module: http://browsersync.io
-
-## Manually added
-
 * Yandex.Metrika / Google Analytics code snippets
 * 2Gis map widget
 
-## FTP publishing
+## Gulp Build system
 
-You should add .env file to root of project, then copy content of .env.example into it  and set proper values for variables.
+For FTP publishing feature, you should add .env file to root of project, then copy content of .env.example into it  and set proper values for variables.
+
+Start working with
+
+```bash
+$ gulp
+```
+
+Default gulp task will clear ./build folder, then build complete project (process HTML/CSS/JS files, IMG and Fonts).
+Also, watchers for HTML/CSS/IMG are added to monitor changes and re-build project
+
 
 Then use
 
@@ -26,4 +33,6 @@ $ gulp publish
 ```
 
 to build whole project and upload it to specified FTP.
+
+Add **PUPLISH_ALL** to .env file to publish whole site after any changes (by default, only changed files are published).
 
