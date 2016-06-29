@@ -1,7 +1,7 @@
 'use strict';
 require('dotenv-safe').load();
 const gulp = require('gulp');
-const clean = require('gulp-clean');
+const del = require('del');
 const imagemin = require('gulp-imagemin');
 const browserSync = require('browser-sync').create();
 const ftp = require('vinyl-ftp');
@@ -88,9 +88,9 @@ gulp.task( task.processAll, function(cb) {
 
 
 // Clean: clear all files in build directory
-gulp.task( task.clean, function () {
-  return gulp.src( build.base + '/**/*.*' /*, {read: false} */)
-    .pipe(clean());
+gulp.task( task.clean, function ( done ) {
+  del( build.base + allGlob );
+  done();
 });
 
 // CSS: process CSS files
