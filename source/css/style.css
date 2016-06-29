@@ -588,7 +588,7 @@ h1,h2,h3,h4,h5,h6,p,label,.btn,a{
 /* Bloc image backgrounds */
 
 .bg-bg-2{
-	background-image:url("/img/bg-2.jpg");
+	background-image:url("/img/bg.jpg");
 }
 
 
@@ -610,6 +610,10 @@ h1,h2,h3,h4,h5,h6,p,label,.btn,a{
 }
 @media (max-width: 767px)
 {
+	.row{
+		margin-left: 0px;
+		margin-right: 0px;
+	}
     .page-container{
         overflow-x: hidden;
         position:relative;
