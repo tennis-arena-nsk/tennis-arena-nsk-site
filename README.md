@@ -24,7 +24,7 @@ Source code for web site at http://tennis-arena-nsk.ru/. Only basic landing as f
     | run_uncss.sh      script to run UnCSS
     | (other stuff)
 
-## Sie built with Gulp
+## Site built with Gulp
 
 You should have Gulp preinstalled. 
 
