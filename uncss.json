@@ -1,9 +1,9 @@
 {
   "ignore"       : [ "/\\.fade/", "/\\.modal/", ".affix",  "/\\.tooltip/",  "/\\.popover", "/\\.collaps/", "/\\.carousel-inner"  ],
   "media"        : [ "(max-width: 767px) handheld and (orientation: landscape)" ],
-  "stylesheets"  : [ "/css/vendor/bootstrap.min.css", "/css/vendor/animate.min.css","/css/style.css"],
+  "stylesheets"  : [], /* "/css/vendor/bootstrap.min.css", "/css/vendor/animate.min.css","/css/style.css" ], */
   "ignoreSheets" : [ "/css/fonts/" ],
   "timeout"      : 1000,
-  "htmlroot"     : "./build/",
+  "htmlroot"     : "./source/",
   "report"       : false
 }
