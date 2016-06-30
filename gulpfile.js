@@ -7,6 +7,10 @@ const browserSync = require('browser-sync').create();
 const ftp = require('vinyl-ftp');
 const gutil = require( 'gulp-util' );
 const runSequence = require('run-sequence');
+const critical = require('critical');
+const cleanCSS = require('gulp-clean-css');
+const htmlmin = require('gulp-htmlmin');
+const minify = require('gulp-minify');
 
 const allGlob = '/**/*';
 
@@ -50,7 +54,8 @@ var task = {
   watchHtml: 'watch-html',
   publish: 'publish',
   publishWatch: 'publish-watch',
-  reload: 'reload-browser'
+  reload: 'reload-browser',
+  critical: 'critical-css'
 };
 
 // configuration for publish to FTP:
@@ -103,8 +108,11 @@ gulp.task( task.clean, function () {
 
 // CSS: process CSS files
 gulp.task( task.processCss, function () {
-  // plain copy of css files into dest:
   return gulp.src( source.cssFiles  )
+    .pipe(cleanCSS({debug: true}, function(details) {
+      console.log(details.name + ': ' + details.stats.originalSize + 'b (original)');
+      console.log(details.name + ': ' + details.stats.minifiedSize + 'b minified');
+    }))
     .pipe( gulp.dest( build.css ));
 });
 
@@ -127,15 +135,18 @@ gulp.task( task.processFonts, function () {
 
 // HTML: process pages
 gulp.task( task.processHtml, function () {
-  // plain copy:
   return gulp.src( source.htmlFiles  )
+    .pipe(htmlmin({collapseWhitespace: true}))
     .pipe( gulp.dest( build.base ));
 });
 
 // JS: process js
 gulp.task( task.processJs, function () {
-  // plain copy:
   return gulp.src( source.jsFiles  )
+    .pipe( minify( {
+      ext: { src:'.js', min: '.js'},
+      noSource: true
+    }))
     .pipe( gulp.dest( build.js ));
 });
 
@@ -182,4 +193,18 @@ gulp.task( task.publish, [task.processAll], function() {
     stream = stream.pipe(conn.newer(connection.destPath)); // only upload newer files
   }
   return stream.pipe( conn.dest( connection.destPath ) );
+});
+
+gulp.task( task.critical, [ task.processAll], function (done) {
+  console.log( 'Start generating critical CSS');
+  critical.generate({
+    inline: true,
+    base: './original/index.html',
+    src: 'index.html',
+    dest: source.base + '/index.html',
+    minify: true,
+    width: 320,
+    height: 480
+  });
+  done();
 });
