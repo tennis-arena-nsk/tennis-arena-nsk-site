@@ -566,9 +566,9 @@ h1,h2,h3,h4,h5,h6,p,label,.btn,a{
 }
 /* Text colour styles */
 
-.tc-outer-space{
-	color:#47454B!important;
-	!important}/* Button colour styles */
+.tc-outer-space {
+	color: #47454B !important;
+}	/* !important } /* Button colour styles */
 
 .btn-pastel-green{
 	background:#81E965;

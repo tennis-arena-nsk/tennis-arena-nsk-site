@@ -38,7 +38,7 @@ build.js = build.base + '/js';
 // config var for task names:
 var task = {
   clean: 'clean',
-  processCss :  'process-css',
+  processCss: 'process-css',
   processImg: 'process-img',
   processFonts: 'process-fonts',
   processHtml: 'process-html',
@@ -49,7 +49,8 @@ var task = {
   watchCss: 'watch-css',
   watchHtml: 'watch-html',
   publish: 'publish',
-  publishWatch: 'publish-watch'
+  publishWatch: 'publish-watch',
+  reload: 'reload-browser'
 };
 
 // configuration for publish to FTP:
@@ -74,6 +75,8 @@ function getFtpConnection() {
   });
 }
 
+var browserSyncReady = false;
+
 // define generic tasks
 gulp.task('default', [ task.webserver] );
 gulp.task( task.processAll, function(done) {
@@ -81,10 +84,17 @@ gulp.task( task.processAll, function(done) {
   runSequence( 
     task.clean,
     task.processImg, task.processFonts, task.processCss , task.processHtml, task.processJs ,
+    task.reload,
     done
   );
 });
 
+// browser reload if ready
+gulp.task( task.reload, function (done) {
+  if( browserSyncReady )
+    browserSync.reload();
+  done();
+});
 
 // Clean: clear all files in build directory
 gulp.task( task.clean, function () {
@@ -150,6 +160,8 @@ gulp.task(task.webserver, [task.processAll], function() {
       baseDir: build.base
     }
   });
+
+  browserSyncReady = true;
 
   // add browserSync.reload to the tasks array to make
   // all browsers reload after tasks are complete.

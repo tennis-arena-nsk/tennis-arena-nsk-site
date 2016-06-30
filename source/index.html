@@ -25,14 +25,17 @@
 	<meta name="theme-color" content="#ffffff">
     <!-- End of favicons -->
     
-	<link rel="stylesheet" href="css/vendor/bootstrap.min.css">
+	<!--link rel="stylesheet" href="css/vendor/bootstrap.min.css">
 	<link rel="stylesheet" href="css/style.css">
-	<link rel="stylesheet" href="css/vendor/animate.min.css" />
-	<link rel='stylesheet' href='css/fonts/font-awesome.min.css'/>
+	<link rel="stylesheet" href="css/vendor/animate.min.css" /-->
+
+	<link rel="stylesheet" href="css/uncss.css">
+
+	<!--link rel='stylesheet' href='css/fonts/font-awesome.min.css'/>
 	<link rel='stylesheet' href='css/fonts/et-line.min.css'/>
 	<link rel='stylesheet' href='css/fonts/linecons.min.css'/>
 	<link rel='stylesheet' href='css/fonts/ionicons.min.css'/>
-	<link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Josefin+Sans&subset=latin,latin-ext'>
+	<link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Josefin+Sans&subset=latin,latin-ext'-->
 	    
     <title>Теннис-Арена - открытые грунтовые теннисные корты в Новосибирске</title>
 
@@ -388,9 +391,20 @@
 </div>
 <!-- Main container END -->
 
+<!-- Scripts -->
 <script src="js/vendor/jquery-2.1.0.min.js"></script>
 <script src="js/vendor/bootstrap.min.js"></script>
 <script src="js/vendor/blocs.min.js"></script>
+
+<!-- Async loading of CSS: fonts -->
+<script>
+	$(document).ready(function() {
+		$("head").append("<link rel='stylesheet' type='text/css' href='/css/fonts/font-awesome.min.css' />");
+		$("head").append("<link rel='stylesheet' type='text/css' href='/css/fonts/et-line.min.css' />");
+		$("head").append("<link rel='stylesheet' type='text/css' href='/css/fonts/linecons.min.css' />");
+		$("head").append("<link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Josefin+Sans&subset=latin,latin-ext' />");
+	})
+</script>
 
 <!-- Google Analytics --> 
 <script>
