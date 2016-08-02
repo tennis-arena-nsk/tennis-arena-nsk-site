@@ -1,0 +1,3 @@
+User-agent: *
+Host: tennis-arena-nsk.ru
+Sitemap: http://tennis-arena-nsk.ru/sitemap.xml

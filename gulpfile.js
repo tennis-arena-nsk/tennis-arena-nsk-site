@@ -25,6 +25,8 @@ source.fontsAll = source.fonts + allGlob;
 source.htmlFiles = source.base + '/**/*.html'; // only html files inside source folder
 source.js = source.base + '/js';
 source.jsFiles = source.js + '/**/*.js'; // only js files inside source folder
+source.robotsFile = source.base + '/robots.txt'
+source.sitemapFile = source.base + '/sitemap.*'
 
 var build = { base: './build' };
 build.css = build.base + '/css';
@@ -47,11 +49,13 @@ var task = {
   processFonts: 'process-fonts',
   processHtml: 'process-html',
   processJs: 'process-js',
+  processOther: 'process-other',
   processAll: 'process-build',
   webserver: 'webserver',
   watchJs: 'watch-js',
   watchCss: 'watch-css',
   watchHtml: 'watch-html',
+  watchOther: 'watch-other',
   publish: 'publish',
   publishWatch: 'publish-watch',
   reload: 'reload-browser',
@@ -88,7 +92,8 @@ gulp.task( task.processAll, function(done) {
   // use undocumented function to start complete build just after clean:
   runSequence( 
     task.clean,
-    task.processImg, task.processFonts, task.processCss , task.processHtml, task.processJs ,
+    task.processImg, task.processFonts, task.processCss , task.processHtml, task.processJs,
+    task.processOther,
     task.reload,
     done
   );
@@ -150,6 +155,15 @@ gulp.task( task.processJs, function () {
     .pipe( gulp.dest( build.js ));
 });
 
+// OTHER: process robots.txt & sitemap
+gulp.task( task.processOther, function () {
+  gulp.src( source.robotsFile  )
+    .pipe( gulp.dest( build.base ));
+
+  return gulp.src( source.sitemapFile )
+    .pipe( gulp.dest( build.base ));
+});
+
 // reload browser and publish site helper function
 var reloadAndPublish = function(done) {
   browserSync.reload();
@@ -162,6 +176,7 @@ var reloadAndPublish = function(done) {
 gulp.task( task.watchHtml, [ task.processHtml ], reloadAndPublish );
 gulp.task( task.watchCss, [ task.processCss ], reloadAndPublish );
 gulp.task( task.watchJs, [ task.processJs ], reloadAndPublish );
+gulp.task( task.watchOther, [ task.processOther ], reloadAndPublish );
 
 // Start webserver with live reloading:
 gulp.task(task.webserver, [task.processAll], function() {
@@ -179,6 +194,8 @@ gulp.task(task.webserver, [task.processAll], function() {
   gulp.watch( source.jsFiles, [ task.watchJs ] );
   gulp.watch( source.htmlFiles, [ task.watchHtml ] );
   gulp.watch( source.cssFiles, [ task.watchCss ] );
+  gulp.watch( source.robotsFile, [ task.watchOther ] );
+  gulp.watch( source.sitemapFile, [ task.watchOther ] );
 });
 
 // PUBLISH: upload files to FTP
