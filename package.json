@@ -17,17 +17,17 @@
   },
   "homepage": "https://github.com/tennis-arena-nsk/tennis-arena-nsk-site#readme",
   "devDependencies": {
-    "browser-sync": "^2.13.0",
-    "critical": "^0.7.3",
-    "del": "^2.2.1",
-    "dotenv-safe": "^2.3.1",
+    "browser-sync": "^2.18.8",
+    "critical": "^0.8.4",
+    "del": "^2.2.2",
+    "dotenv-safe": "^4.0.3",
     "gulp": "^3.9.1",
-    "gulp-clean-css": "^2.0.10",
-    "gulp-htmlmin": "^2.0.0",
-    "gulp-imagemin": "^3.0.1",
-    "gulp-minify": "0.0.12",
-    "gulp-util": "^3.0.7",
-    "run-sequence": "^1.2.1",
-    "vinyl-ftp": "^0.5.0"
+    "gulp-clean-css": "^3.0.3",
+    "gulp-htmlmin": "^3.0.0",
+    "gulp-imagemin": "^3.1.1",
+    "gulp-minify": "0.0.15",
+    "gulp-util": "^3.0.8",
+    "run-sequence": "^1.2.2",
+    "vinyl-ftp": "^0.6.0"
   }
 }
