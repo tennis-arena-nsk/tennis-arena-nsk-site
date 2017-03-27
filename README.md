@@ -4,16 +4,15 @@ Source code for web site at http://tennis-arena-nsk.ru/. Only basic landing as f
 
 ## Tools used
 
-* Prototyping html / css code: Blocs.app (Mac)
+* Prototyping: Bootstrap studio (Mac)
 * Favicon generator: http://realfavicongenerator.net/
 * Gulp build system: http://gulpjs.com
 * Live reload of pages via browser-sync module: http://browsersync.io
 * Yandex.Metrika / Google Analytics code snippets
-* 2Gis map widget
+* Map widget: Yandex.Maps
 
 ## Project structure
 
-    |- original/        folder that holds original version of html, css, js files and index.html
     |- source/          other project assets - some procesing done on css (generated uncss.css, index.html processed via critical)
     |- build/           automatically generated folder, source for publishing
     |- node-modules/    use "npm install" to fill this folder
@@ -74,4 +73,5 @@ To use critical, run
 $gulp critical-css
 ```
 
-This will use /original/index.html as source and /source/index.html as destination.
+This will use /source/index.html as source and output index_cr.html as destination. Then if all is ok with generated file, you can replace index.html with index_cr.html directly on hosting.
+

@@ -216,9 +216,9 @@ gulp.task( task.critical, [ task.processAll], function (done) {
   console.log( 'Start generating critical CSS');
   critical.generate({
     inline: true,
-    base: './original/index.html',
+    base: source.base,
     src: 'index.html',
-    dest: source.base + '/index.html',
+    dest: 'index_cr.html',
     minify: true,
     width: 320,
     height: 480
