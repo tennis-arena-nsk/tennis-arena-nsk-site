@@ -16,30 +16,30 @@ const allGlob = '/**/*';
 
 // config vars for folders/files:
 var source = {  base: './source' };
-source.css = source.base + '/css';
+source.css = source.base + '/assets/css';
 source.cssFiles = source.css + '/**/*.css'; // only css files inside source folder
-source.img = source.base + '/img';
+source.img = source.base + '/assets/img';
 source.imgAll = source.img + allGlob; // all files in source img folder
-source.fonts = source.base + '/fonts';
+source.fonts = source.base + '/assets/fonts';
 source.fontsAll = source.fonts + allGlob;
 source.htmlFiles = source.base + '/**/*.html'; // only html files inside source folder
-source.js = source.base + '/js';
+source.js = source.base + '/assets/js';
 source.jsFiles = source.js + '/**/*.js'; // only js files inside source folder
 source.robotsFile = source.base + '/robots.txt'
 source.sitemapFile = source.base + '/sitemap.*'
 
 var build = { base: './build' };
-build.css = build.base + '/css';
+build.css = build.base + '/assets/css';
 build.cssFiles = build.css;
-build.img = build.base + '/img';
+build.img = build.base + '/assets/img';
 build.imgFiles = [
   build.img + '/*.jpg',
-  build.img + '*.png',
-  build.img + '*.ico',
-  build.img + '*.gif'
+  build.img + '/*.png',
+  build.img + '/*.ico',
+  build.img + '/*.gif'
 ];
-build.fonts = build.base + '/fonts';
-build.js = build.base + '/js';
+build.fonts = build.base + '/assets/fonts';
+build.js = build.base + '/assets/js';
 
 // config var for task names:
 var task = {
